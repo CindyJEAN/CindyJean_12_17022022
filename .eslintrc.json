@@ -110,7 +110,7 @@
       "warn"
     ],
     "sort-keys": [
-      "warn"
+      "none"
     ],
     "no-trailing-spaces": [
       "warn"
