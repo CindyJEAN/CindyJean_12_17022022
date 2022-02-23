@@ -1,0 +1,123 @@
+@import "../../base/utils";
+
+.navbar {
+  background-color: $almostBlack;
+}
+
+li {
+  list-style-type: none;
+}
+
+.navbarHorizontal {
+  width: 100vw;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+  nav {
+    display: flex;
+    align-items: center;
+    height: $headerWidth;
+    margin: 0 1.5rem;
+
+    ul {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+
+  a:link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  a:active,
+  a:visited {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.navbarVertical {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: calc(100vh - #{$headerWidth});
+ // height: 100vh;
+ // margin-top: -$headerWidth;
+ // z-index: 1;
+
+  nav {
+    margin: auto;
+  }
+
+  ul {
+    padding-left: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+  div {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5vh;
+    p {
+      color: white;
+      white-space: nowrap;
+      transform: rotate(-90deg);
+    }
+  }
+}
+// .navbarVertical {
+//   display: flex;
+//   flex-direction: column;
+//   width: 120px;
+//   height: calc(100vh - #{$headerWidth});
+//   // height: 100vh;
+//   margin-top: -$headerWidth; padding-top: $headerWidth;
+//   z-index: 1;
+
+//   nav {
+//     margin: auto;
+//   }
+
+//   ul {
+//     padding-left: 0;
+//   }
+
+//   li {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     background-color: white;
+//     width: 4rem;
+//     height: 4rem;
+//     border-radius: 10px;
+//     margin-bottom: 1rem;
+//   }
+
+//   div {
+//     height: 200px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     margin-bottom: 5vh;
+//     p {
+//       color: white;
+//       white-space: nowrap;
+//       transform: rotate(-90deg);
+//     }
+//   }
+// }

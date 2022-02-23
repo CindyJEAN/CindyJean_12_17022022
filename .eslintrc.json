@@ -109,9 +109,7 @@
     "sort-imports": [
       "warn"
     ],
-    "sort-keys": [
-      "warn"
-    ],
+    "sort-keys": 0,
     "no-trailing-spaces": [
       "warn"
     ],
