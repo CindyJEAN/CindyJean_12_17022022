@@ -1,1 +1,11 @@
 @import "../../base/utils";
+
+.infoCard {
+  @extend .dashboardItem;
+  padding: 2rem;
+  display: grid;
+  column-gap: 1rem;
+  grid-template-areas:
+    "icon count"
+    "icon label";
+}

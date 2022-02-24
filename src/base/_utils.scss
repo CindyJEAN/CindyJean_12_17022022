@@ -5,4 +5,11 @@ $colorPrimaryDark: #E60000;
 $backgroundDark: #282D30;
 $backgroundLight: #FBFBFB;
 
-$headerWidth: 90px;
+$headerHeight: 90px;
+$headerWidth: 120px;
+
+
+.dashboardItem {
+  background-color: $backgroundLight;
+  border-radius: 10px;
+}

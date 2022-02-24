@@ -15,7 +15,7 @@ li {
   nav {
     display: flex;
     align-items: center;
-    height: $headerWidth;
+    height: $headerHeight;
     margin: 0 1.5rem;
 
     ul {
@@ -43,9 +43,9 @@ li {
   display: flex;
   flex-direction: column;
   width: 120px;
-  height: calc(100vh - #{$headerWidth});
+  height: calc(100vh - #{$headerHeight});
  // height: 100vh;
- // margin-top: -$headerWidth;
+ // margin-top: -$headerHeight;
  // z-index: 1;
 
   nav {
@@ -84,9 +84,9 @@ li {
 //   display: flex;
 //   flex-direction: column;
 //   width: 120px;
-//   height: calc(100vh - #{$headerWidth});
+//   height: calc(100vh - #{$headerHeight});
 //   // height: 100vh;
-//   margin-top: -$headerWidth; padding-top: $headerWidth;
+//   margin-top: -$headerHeight; padding-top: $headerHeight;
 //   z-index: 1;
 
 //   nav {

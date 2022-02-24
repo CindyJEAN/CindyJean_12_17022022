@@ -1,3 +1,4 @@
+import Dashboard from "./components/dashboard/dashboard";
 import NavbarHorizontal from "./components/navigation/navbarHorizontal";
 import NavbarVertical from "./components/navigation/navbarVertical";
 import React from "react";
@@ -7,9 +8,7 @@ function App() {
     <div className="App">
       <NavbarHorizontal />
       <NavbarVertical />
-      <main>
-        <h1>main component</h1>
-      </main>
+      <Dashboard />
     </div>
   );
 }

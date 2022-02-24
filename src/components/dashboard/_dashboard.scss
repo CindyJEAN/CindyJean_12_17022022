@@ -1,0 +1,43 @@
+@import "../../base/utils";
+
+.dashboardPage {
+  // display: flex;
+  // margin: 1rem auto;
+  margin: 1rem 8rem;
+  width: calc(80% - #{$headerWidth});
+  max-width: 1440px;
+  // max-width: 1126px;
+
+  .contrastText {
+    color: $colorPrimary;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 1.125rem;
+  }
+
+  .dashboardData {
+    display: grid;
+    column-gap: 2rem;
+    // height: fit-content;
+    height: 60vh;
+    grid-template-columns: auto 1fr;
+
+    .dashboardDataGraphs {
+      display: flex;
+      width: 800px;
+    }
+
+    .dashboardDataInfoCards {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+  }
+}
