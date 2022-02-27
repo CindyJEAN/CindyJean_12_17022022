@@ -4,8 +4,39 @@
   @extend .dashboardItem;
   padding: 2rem;
   display: grid;
-  column-gap: 1rem;
+  column-gap: 1.5rem;
+  justify-content: flex-start;
   grid-template-areas:
     "icon count"
     "icon label";
+
+  img {
+    padding: 1.3rem;
+    border-radius: 5px;
+    grid-area: icon;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    font-weight: 500;
+    color: $colorDark;
+  }
+
+  .calorie {
+    background-color: lighten(#ff0000, 45%);
+  }
+  .carbohydrate {
+    background-color: lighten(#FDCC0C, 40%);
+  }
+  .lipid {
+    background-color: lighten(#FD5181, 30%);
+  }
+  .protein {
+    background-color: lighten(#4AB8FF, 30%);
+  }
+
 }

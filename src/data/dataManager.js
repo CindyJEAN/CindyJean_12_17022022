@@ -5,12 +5,55 @@ const {
   USER_PERFORMANCE,
 } = require("./data");
 
+const getUserId = () => {
+  const user = window.location.href.split("/")[4];
+  return user === "" || user === undefined ? 12 : Number(user);
+};
+
+/**
+ * format data for nutrition element for user
+ *
+ * @param   {String}  element  nutrition element
+ * @param   {Number}  id       user id
+ *
+ * @return  {Object}           label, unit and value of element
+ */
+const getNutritionElementDataByUserId = (element, id) => {
+  const mainData = USER_MAIN_DATA.filter((user) => user.id === id)[0].keyData;
+  const formatedData = {};
+
+  switch (element) {
+    case "calorie":
+      formatedData.label = "Calories";
+      formatedData.unit = "kCal";
+      formatedData.value = mainData.calorieCount;
+      break;
+    case "protein":
+      formatedData.label = "Protéines";
+      formatedData.unit = "g";
+      formatedData.value = mainData.proteinCount;
+      break;
+    case "carbohydrate":
+      formatedData.label = "Glucides";
+      formatedData.unit = "g";
+      formatedData.value = mainData.carbohydrateCount;
+      break;
+    case "lipid":
+      formatedData.label = "Lipides";
+      formatedData.unit = "g";
+      formatedData.value = mainData.lipidCount;
+      break;
+  }
+  return formatedData;
+};
+
 /**
  * @description Retrieve the main user info (first name, last name, today score)
  * @param {number} id
  */
-const getUserById = (id) =>
-  USER_MAIN_DATA.filter((user) => user.id === id).shift();
+const getUserMainDataById = (id) => {
+  return USER_MAIN_DATA.filter((user) => user.id === id)[0];
+};
 
 /**
  * @param {number} id
@@ -35,7 +78,9 @@ const getUserPerformance = (id) =>
   ).shift();
 
 module.exports = {
-  getUserById,
+  getUserId,
+  getUserMainDataById,
+  getNutritionElementDataByUserId,
   getUserActivityById,
   getUserAverageSession,
   getUserPerformance,

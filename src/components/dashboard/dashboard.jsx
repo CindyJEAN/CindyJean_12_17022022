@@ -1,22 +1,13 @@
+import { getUserId, getUserMainDataById } from "../../data/dataManager";
 import InfoCard from "../infoCard/infoCard";
 import React from "react";
-import { getUserById } from "../../data/dataManager";
-
-const userId = 12;
 
 export default function Dashboard() {
-  const userMainData = getUserById(userId);
+  const userId = getUserId();
+  const userMainData = getUserMainDataById(userId);
   const name = userMainData.userInfos.firstName;
 
-  const keyData = [];
-  for (const [key, value] of Object.entries(userMainData.keyData)) {
-    const label = key.toString().slice(0, -5);
-    keyData.push({
-      label: label,
-      count: value,
-      icon: `icon_${label}.svg`,
-    });
-  }
+  const nutritionElements = ["calorie", "protein", "carbohydrate", "lipid"];
 
   return (
     <main className="dashboardPage">
@@ -29,12 +20,10 @@ export default function Dashboard() {
         <div className="dashboardDataGraphs"></div>
 
         <div className="dashboardDataInfoCards">
-          {keyData.map((element, index) => (
+          {nutritionElements.map((element, index) => (
             <InfoCard
               key={index}
-              label={element.label}
-              value={element.count}
-              icon={element.icon}
+              type={element}
             />
           ))}
         </div>
