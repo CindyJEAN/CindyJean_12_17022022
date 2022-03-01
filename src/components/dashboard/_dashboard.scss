@@ -7,7 +7,7 @@
   width: calc(80% - #{$headerWidth});
   max-width: 1440px;
   // max-width: 1126px;
-
+  
   .contrastText {
     color: $colorPrimary;
   }
@@ -38,6 +38,7 @@
       flex-direction: column;
       justify-content: space-between;
       height: 100%;
+      width: fit-content;
     }
   }
 }

@@ -1,0 +1,6 @@
+@import "../../../base/utils";
+
+.dailyActivityChartComponent {
+  @extend .dashboardItem;
+  padding: 2rem;
+}

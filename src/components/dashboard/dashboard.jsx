@@ -1,4 +1,5 @@
 import { getUserId, getUserMainDataById } from "../../data/dataManager";
+import { DailyActivityChart } from "../charts/dailyActivityChart/dailyActivityChart";
 import InfoCard from "../infoCard/infoCard";
 import React from "react";
 
@@ -17,14 +18,13 @@ export default function Dashboard() {
       <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
 
       <div className="dashboardData">
-        <div className="dashboardDataGraphs"></div>
+        <div className="dashboardDataGraphs">
+          <DailyActivityChart />
+        </div>
 
         <div className="dashboardDataInfoCards">
           {nutritionElements.map((element, index) => (
-            <InfoCard
-              key={index}
-              type={element}
-            />
+            <InfoCard key={index} type={element} />
           ))}
         </div>
       </div>
