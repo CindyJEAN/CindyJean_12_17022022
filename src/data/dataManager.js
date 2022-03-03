@@ -12,6 +12,7 @@ const getUserId = () => {
 
 /**
  * format data for nutrition element for user
+ * US #10
  *
  * @param   {String}  element  nutrition element
  * @param   {Number}  id       user id
@@ -48,7 +49,8 @@ const getNutritionElementDataByUserId = (element, id) => {
 };
 
 /**
- * @description Retrieve the main user info (first name, last name, today score)
+ * retrieve the main user info (first name, last name, today score)
+ * US #5
  * @param {number} id
  */
 const getUserMainDataById = (id) => {
@@ -63,6 +65,7 @@ const getUserMainDataById = (id) => {
 
 /**
  * get daily user activity sessions
+ * US #6
  *
  * @param   {Number}  id  user id
  *
@@ -79,13 +82,42 @@ const getUserDailyActivityById = (id) => {
   return dailyActivity;
 };
 
-/**
- * @param {number} id
- */
-const getUserAverageSession = (id) =>
-  USER_AVERAGE_SESSIONS.filter(
+// /**
+//  * @param {number} id
+//  */
+// const getUserAverageSession = (id) =>
+//   USER_AVERAGE_SESSIONS.filter(
+//     (userActivity) => userActivity.userId === id
+//   ).shift();
+
+const getUserAverageSessions = (id) => {
+  const sessions = USER_AVERAGE_SESSIONS.filter(
     (userActivity) => userActivity.userId === id
-  ).shift();
+  )[0].sessions;
+
+  const days = ["L", "M", "M", "J", "V", "S", "D"];
+
+  const formatedSessions = sessions.map((session) => {
+    const index = sessions.indexOf(session);
+    let dayIndex = index;
+
+    while (dayIndex > 6) {
+      dayIndex = dayIndex - 6;
+    }
+
+    return {
+      ...session,
+      day: days[dayIndex],
+    };
+  });
+
+  const totalSessionsLength = sessions.reduce(
+    (acc, curr) => acc + curr.sessionLength,
+    0
+  );
+  const average = totalSessionsLength / sessions.length;
+  return { average, formatedSessions };
+};
 
 /**
  * @param {number} id
@@ -100,7 +132,7 @@ module.exports = {
   getUserMainDataById,
   getNutritionElementDataByUserId,
   // getUserActivityById,
-  getUserAverageSession,
+  getUserAverageSessions,
   getUserPerformance,
   getUserDailyActivityById,
 };

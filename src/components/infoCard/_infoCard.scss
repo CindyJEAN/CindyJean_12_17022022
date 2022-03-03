@@ -2,13 +2,17 @@
 
 .infoCard {
   @extend .dashboardItem;
-  padding: 2rem;
+  padding: 1.3rem;
   display: grid;
   column-gap: 1.5rem;
   justify-content: flex-start;
   grid-template-areas:
     "icon count"
     "icon label";
+
+  @include largeScreen {
+    padding: 2rem;
+  }
 
   img {
     padding: 1.3rem;

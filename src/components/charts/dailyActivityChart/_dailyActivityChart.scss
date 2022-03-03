@@ -2,7 +2,8 @@
 
 .dailyActivityChartComponent {
   @extend .dashboardItem;
-  padding: 1rem 1.8rem;
+  padding: 1rem 1.8rem 2rem;
+  width: 100%;
 
   .barChartLegend {
     color: $grey;
@@ -13,7 +14,11 @@
   .recharts-default-legend {
     display: flex;
     justify-content: flex-end;
-    column-gap: 2rem;
+    
+    @include largeScreen {
+      column-gap: 2rem;
+
+    }
   }
 
   .recharts-cartesian-axis-tick-value {

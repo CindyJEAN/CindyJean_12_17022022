@@ -1,0 +1,10 @@
+@import "../../../base/utils";
+
+.averageSessionsChartComponent {
+  @extend .dashboardItem;
+  padding: 1rem 1.8rem;
+  width: 33%;
+  background-color: $colorPrimary;
+
+
+}

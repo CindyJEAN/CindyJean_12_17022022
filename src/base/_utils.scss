@@ -10,6 +10,12 @@ $headerHeight: 90px;
 $headerWidth: 120px;
 
 
+@mixin largeScreen {
+  @media screen and (min-width: 1440px) {@content}
+};
+
+
+
 .dashboardItem {
   background-color: $backgroundLight;
   border-radius: 10px;
