@@ -4,7 +4,8 @@
   // display: flex;
   margin: 1rem auto;
   // margin: 1rem 8rem;
-  width: calc(80% - #{$headerWidth});
+  width: calc(90% - #{$headerWidth});
+  // width: calc(80% - #{$headerWidth});
   max-width: 1440px;
   // max-width: 1126px;
   
@@ -23,10 +24,11 @@
 
   .dashboardData {
     display: grid;
-    column-gap: 2rem;
+    column-gap: 3rem;
     // height: fit-content;
     height: 60vh;
     grid-template-columns: auto 1fr;
+    margin-top: 5rem;
 
     .dashboardDataGraphs {
       display: flex;

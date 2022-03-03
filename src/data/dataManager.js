@@ -55,11 +55,29 @@ const getUserMainDataById = (id) => {
   return USER_MAIN_DATA.filter((user) => user.id === id)[0];
 };
 
+// /**
+//  * @param {number} id
+//  */
+// const getUserActivityById = (id) =>
+//   USER_ACTIVITY.filter((userActivity) => userActivity.userId === id).shift();
+
 /**
- * @param {number} id
+ * get daily user activity sessions
+ *
+ * @param   {Number}  id  user id
+ *
+ * @return  {Array.<Object>}      session object : day, kilogram and calories
  */
-const getUserActivityById = (id) =>
-  USER_ACTIVITY.filter((userActivity) => userActivity.userId === id).shift();
+const getUserDailyActivityById = (id) => {
+  const userActivity = USER_ACTIVITY.filter((user) => user.userId === id)[0];
+  const dailyActivity = userActivity.sessions.map((session) => {
+    return {
+      ...session,
+      day: session.day.split("-")[2],
+    };
+  });
+  return dailyActivity;
+};
 
 /**
  * @param {number} id
@@ -81,7 +99,8 @@ module.exports = {
   getUserId,
   getUserMainDataById,
   getNutritionElementDataByUserId,
-  getUserActivityById,
+  // getUserActivityById,
   getUserAverageSession,
   getUserPerformance,
+  getUserDailyActivityById,
 };

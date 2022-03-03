@@ -128,7 +128,7 @@
     ],
     "max-lines-per-function": [
       "warn",
-      40
+      100
     ],
     "multiline-ternary": [
       "error",

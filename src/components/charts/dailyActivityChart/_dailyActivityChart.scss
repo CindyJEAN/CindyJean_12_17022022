@@ -2,5 +2,39 @@
 
 .dailyActivityChartComponent {
   @extend .dashboardItem;
-  padding: 2rem;
+  padding: 1rem 1.8rem;
+
+  .barChartLegend {
+    color: $grey;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .recharts-default-legend {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 2rem;
+  }
+
+  .recharts-cartesian-axis-tick-value {
+    fill: $greyLight;
+  }
+
+  .recharts-cartesian-axis-line {
+    stroke: $greyLight;
+  }
+
+  .chartTitle {
+    font-weight: 500;
+  }
+
+  .tooltipText {
+    color: $grey;
+    // color: white;
+  }
+
+  // .recharts-default-tooltip {
+  //   background-color: $colorPrimaryDark !important;
+  //   border: none !important;
+  // }
 }
