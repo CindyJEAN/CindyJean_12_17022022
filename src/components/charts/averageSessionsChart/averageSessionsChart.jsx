@@ -13,7 +13,7 @@ export const AverageSessionsChart = () => {
         <LineChart
           width={730}
           height={250}
-          data={averageSessions.sessions}
+          data={averageSessions}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <XAxis dataKey="day" />

@@ -10,17 +10,18 @@ const getUserId = () => {
   return user === "" || user === undefined ? 12 : Number(user);
 };
 
+const userId= getUserId();
+
 /**
  * format data for nutrition element for user
  * US #10
  *
  * @param   {String}  element  nutrition element
- * @param   {Number}  id       user id
  *
  * @return  {Object}           label, unit and value of element
  */
-const getNutritionElementDataByUserId = (element, id) => {
-  const mainData = USER_MAIN_DATA.filter((user) => user.id === id)[0].keyData;
+const getNutritionElementDataByUserId = (element) => {
+  const mainData = USER_MAIN_DATA.filter((user) => user.id === userId)[0].keyData;
   const formatedData = {};
 
   switch (element) {
@@ -54,7 +55,7 @@ const getNutritionElementDataByUserId = (element, id) => {
  * @param {number} id
  */
 const getUserMainDataById = (id) => {
-  return USER_MAIN_DATA.filter((user) => user.id === id)[0];
+  return USER_MAIN_DATA.filter((user) => user.id === userId)[0];
 };
 
 // /**
@@ -79,6 +80,11 @@ const getUserDailyActivityById = (id) => {
       day: session.day.split("-")[2],
     };
   });
+  // return {
+  //   dailyActivity,
+  //   unitLeft:"arbre",
+  //   unitRight:"fleur"
+  // };
   return dailyActivity;
 };
 
@@ -111,12 +117,13 @@ const getUserAverageSessions = (id) => {
     };
   });
 
-  const totalSessionsLength = sessions.reduce(
-    (acc, curr) => acc + curr.sessionLength,
-    0
-  );
-  const average = totalSessionsLength / sessions.length;
-  return { average, formatedSessions };
+  // const totalSessionsLength = sessions.reduce(
+  //   (acc, curr) => acc + curr.sessionLength,
+  //   0
+  // );
+  // const average = totalSessionsLength / sessions.length;
+  // return { average, formatedSessions };
+  return formatedSessions;
 };
 
 /**

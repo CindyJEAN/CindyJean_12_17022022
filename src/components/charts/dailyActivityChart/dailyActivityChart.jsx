@@ -25,6 +25,7 @@ import { getUserDailyActivityById, getUserId } from "../../../data/dataManager";
 export const DailyActivityChart = () => {
   const userId = getUserId();
   const dailyActivity = getUserDailyActivityById(userId);
+  // const {dailyActivity, unitLeft, untiRight} = getUserDailyActivityById(userId);
 
   return (
     <div className="dailyActivityChartComponent">
@@ -46,11 +47,22 @@ export const DailyActivityChart = () => {
             tick={{ transform: "translate(0, 15)" }}
           />
           <YAxis
-            // dataKey="kilogram"
+            yAxisId="kg"
+            dataKey="kilogram"
+            domain={["dataMin-5", "dataMax"]}
             orientation="right"
             axisLine={false}
             tickLine={false}
             tick={{ transform: "translate(20, 0)" }}
+          />
+          <YAxis
+            yAxisId="calories"
+            dataKey="calories"
+            // domain={["auto", "auto"]}
+            // orientation="right"
+            axisLine={false}
+            tickLine={false}
+            // tick={{ transform: "translate(20, 0)" }}
           />
           <Tooltip
             offset={60}
@@ -81,8 +93,10 @@ export const DailyActivityChart = () => {
             radius={[10, 10, 0, 0]}
             // name="kg"
             name="Poids (kg)"
+            yAxisId="kg"
           />
           <Bar
+            yAxisId="calories"
             dataKey="calories"
             fill="#E60000"
             barSize={7}
