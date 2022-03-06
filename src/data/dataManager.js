@@ -73,8 +73,7 @@ const getUserMainDataById = () => {
  * get daily user activity sessions
  * US #6
  *
-//  * @return  {Array.<Object>}      session object : day, kilogram and calories
- * @return  {Object}      dailyActivity Array of objects (day, kilogram and calories), units for left YAxis and right YAxis
+ * @return  {Object}      array of objects (day, kilogram and calories), units for left YAxis and right YAxis
  */
 const getUserDailyActivityById = () => {
   const userActivity = USER_ACTIVITY.filter(
@@ -86,12 +85,12 @@ const getUserDailyActivityById = () => {
       day: session.day.split("-")[2],
     };
   });
+
   return {
     dailyActivity,
     unitLeft:"kCal",
     unitRight:"kg"
   };
-  // return dailyActivity;
 };
 
 // /**
@@ -102,6 +101,11 @@ const getUserDailyActivityById = () => {
 //     (userActivity) => userActivity.userId === id
 //   ).shift();
 
+/**
+ * get formated average sessions
+ *
+ * @return  {Array<Object>}  array of objects : day (in week), sessionLength
+ */
 const getUserAverageSessions = () => {
   const sessions = USER_AVERAGE_SESSIONS.filter(
     (userActivity) => userActivity.userId === userId

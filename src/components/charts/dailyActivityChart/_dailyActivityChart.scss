@@ -4,6 +4,10 @@
   @extend .dashboardItem;
   padding: 1rem 1.8rem 2rem;
   width: 100%;
+  
+  .recharts-surface:hover {
+    cursor: pointer;
+  }
 
   .barChartLegend {
     color: $grey;

@@ -17,7 +17,7 @@ export default function DailyActivityChart() {
 
   return (
     <div className="dailyActivityChartComponent">
-      <ResponsiveContainer width="99%" aspect={3}>
+      <ResponsiveContainer width="99%">
         <BarChart data={dailyActivity} barGap={8}>
           <text
             x={0}
