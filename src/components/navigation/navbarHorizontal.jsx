@@ -1,7 +1,8 @@
 import React from "react";
-import logo from "../../assets/icons/logo_sportsee_text.svg";
 
 export default function NavbarHorizontal() {
+  const logo = "/icons/logo_sportsee_text.svg";
+
   return (
     <header className="navbar navbarHorizontal">
       <nav>

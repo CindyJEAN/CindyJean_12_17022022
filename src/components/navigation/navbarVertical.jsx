@@ -1,8 +1,4 @@
 import React from "react";
-import cycling from "../../assets/icons/icon_sport_cycling.svg";
-import meditation from "../../assets/icons/icon_sport_meditation.svg";
-import swimming from "../../assets/icons/icon_sport_swimming.svg";
-import weightlifting from "../../assets/icons/icon_sport_weightlifting.svg";
 
 export default function NavbarVertical() {
   return (
@@ -11,22 +7,22 @@ export default function NavbarVertical() {
         <ul>
           <li>
             <a href="#">
-              <img src={meditation} alt="logo sportsee" />
+              <img src="/icons/icon_sport_meditation.svg" alt="icône méditation" />
             </a>
           </li>
           <li>
             <a href="#">
-              <img src={swimming} alt="logo sportsee" />
+              <img src="/icons/icon_sport_swimming.svg" alt="icône natation" />
             </a>
           </li>
           <li>
             <a href="#">
-              <img src={cycling} alt="logo sportsee" />
+              <img src="/icons/icon_sport_cycling.svg" alt="icône cyclisme" />
             </a>
           </li>
           <li>
             <a href="#">
-              <img src={weightlifting} alt="logo sportsee" />
+              <img src="/icons/icon_sport_weightlifting.svg" alt="icône musculation" />
             </a>
           </li>
         </ul>

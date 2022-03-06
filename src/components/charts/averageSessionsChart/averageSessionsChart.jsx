@@ -1,11 +1,10 @@
-import React, { Fragment } from "react";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-import { getUserAverageSessions, getUserId } from "../../../data/dataManager";
+import React, { Fragment } from "react";
+import { getUserAverageSessions } from "../../../data/dataManager";
 
-export const AverageSessionsChart = () => {
-  const userId = getUserId();
-  const averageSessions = getUserAverageSessions(userId);
-  console.log(averageSessions);
+export default function AverageSessionsChart() {
+  const averageSessions = getUserAverageSessions();
+  // console.log("averageSessions", averageSessions);
 
   return (
     <div className="averageSessionsChartComponent">
@@ -18,9 +17,14 @@ export const AverageSessionsChart = () => {
         >
           <XAxis dataKey="day" />
           <Tooltip />
-          <Line type="monotone" dataKey={"sessionLength"} stroke="#fff" dot={false}/>
+          <Line
+            type="monotone"
+            dataKey={"sessionLength"}
+            stroke="#fff"
+            dot={false}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>
   );
-};
+}

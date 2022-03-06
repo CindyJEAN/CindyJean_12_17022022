@@ -14,10 +14,9 @@
   .recharts-default-legend {
     display: flex;
     justify-content: flex-end;
-    
+
     @include largeScreen {
       column-gap: 2rem;
-
     }
   }
 
@@ -33,13 +32,24 @@
     font-weight: 500;
   }
 
-  .tooltipText {
-    color: $grey;
-    // color: white;
+  .recharts-tooltip-cursor {
+    fill: rgba(204, 204, 204, 0.5);
   }
 
-  // .recharts-default-tooltip {
-  //   background-color: $colorPrimaryDark !important;
-  //   border: none !important;
-  // }
+  .customTooltip {
+    background-color: $colorPrimaryDark;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+    padding: 0.8rem 0.4rem;
+
+    .tooltipText {
+      color: white;
+      font-size: 0.6rem;
+      // font-size: 0.5rem;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
 }

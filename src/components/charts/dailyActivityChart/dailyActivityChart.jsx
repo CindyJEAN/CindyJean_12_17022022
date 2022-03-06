@@ -8,24 +8,12 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import React, { Fragment } from "react";
-import { getUserDailyActivityById, getUserId } from "../../../data/dataManager";
+import DailyActivityCustomTooltip from "./dailyActivityCustomTooltip";
+import React from "react";
+import { getUserDailyActivityById } from "../../../data/dataManager";
 
-// const CustomTooltip = ({ active, payload, label }) => {
-//   if (active && payload && payload.length) {
-//     return (
-//       <div>
-//         <span className="tooltipText">{payload[0].value}kg</span>
-//         <span className="tooltipText">{payload[1].value}kCal</span>
-//       </div>
-//     );
-//   }
-// };
-
-export const DailyActivityChart = () => {
-  const userId = getUserId();
-  const dailyActivity = getUserDailyActivityById(userId);
-  // const {dailyActivity, unitLeft, untiRight} = getUserDailyActivityById(userId);
+export default function DailyActivityChart() {
+  const { dailyActivity, unitLeft, unitRight } = getUserDailyActivityById();
 
   return (
     <div className="dailyActivityChartComponent">
@@ -55,28 +43,16 @@ export const DailyActivityChart = () => {
             tickLine={false}
             tick={{ transform: "translate(20, 0)" }}
           />
-          <YAxis
-            yAxisId="calories"
-            dataKey="calories"
-            // domain={["auto", "auto"]}
-            // orientation="right"
-            axisLine={false}
-            tickLine={false}
-            // tick={{ transform: "translate(20, 0)" }}
-          />
+          <YAxis yAxisId="calories" dataKey="calories" hide={true} />
           <Tooltip
             offset={60}
-            formatter={(value, name) => (
-              <span className="tooltipText">{`${value}${
-                name === "kg" ? "kg" : "kCal"
-              }`}</span>
-            )}
-            labelFormatter={() => ""}
-            // wrapperStyle={{ backgroundColor: "#E60000" }}
+            content={
+              <DailyActivityCustomTooltip
+                unitLeft={unitLeft}
+                unitRight={unitRight}
+              />
+            }
           />
-          {/* <Tooltip offset={60} /> */}
-          {/* <Tooltip offset={60} content={<CustomTooltip />} /> */}
-          {/* <Tooltip offset={60} formatter={(value) => <span className="tooltipText">{value}</span>}/> */}
           <Legend
             align="right"
             verticalAlign="top"
@@ -89,23 +65,23 @@ export const DailyActivityChart = () => {
           <Bar
             dataKey="kilogram"
             fill="#282D30"
-            barSize={7}
+            barSize={8}
             radius={[10, 10, 0, 0]}
-            // name="kg"
-            name="Poids (kg)"
+            name={`Poids (${unitRight})`}
             yAxisId="kg"
+            unit={unitRight}
           />
           <Bar
             yAxisId="calories"
             dataKey="calories"
             fill="#E60000"
-            barSize={7}
+            barSize={8}
             radius={[10, 10, 0, 0]}
-            // name="kCal"
-            name="Calories brûlées (kCal)"
+            name={`Calories brûlées (${unitLeft})`}
+            unit={unitLeft}
           />
         </BarChart>
       </ResponsiveContainer>
     </div>
   );
-};
+}

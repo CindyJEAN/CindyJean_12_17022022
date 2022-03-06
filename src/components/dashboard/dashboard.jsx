@@ -1,12 +1,11 @@
-import { getUserId, getUserMainDataById } from "../../data/dataManager";
-import { AverageSessionsChart } from "../charts/averageSessionsChart/averageSessionsChart";
-import { DailyActivityChart } from "../charts/dailyActivityChart/dailyActivityChart";
+import AverageSessionsChart from "../charts/averageSessionsChart/averageSessionsChart";
+import DailyActivityChart from "../charts/dailyActivityChart/dailyActivityChart";
 import InfoCard from "../infoCard/infoCard";
 import React from "react";
+import { getUserMainDataById } from "../../data/dataManager";
 
 export default function Dashboard() {
-  const userId = getUserId();
-  const userMainData = getUserMainDataById(userId);
+  const userMainData = getUserMainDataById();
   const name = userMainData.userInfos.firstName;
 
   const nutritionElements = ["calorie", "protein", "carbohydrate", "lipid"];

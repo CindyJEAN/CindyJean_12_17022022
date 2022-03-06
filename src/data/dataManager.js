@@ -5,12 +5,17 @@ const {
   USER_PERFORMANCE,
 } = require("./data");
 
+/**
+ * get user id from url
+ *
+ * @return  {Number}  user id
+ */
 const getUserId = () => {
   const user = window.location.href.split("/")[4];
   return user === "" || user === undefined ? 12 : Number(user);
 };
 
-const userId= getUserId();
+const userId = getUserId();
 
 /**
  * format data for nutrition element for user
@@ -21,7 +26,8 @@ const userId= getUserId();
  * @return  {Object}           label, unit and value of element
  */
 const getNutritionElementDataByUserId = (element) => {
-  const mainData = USER_MAIN_DATA.filter((user) => user.id === userId)[0].keyData;
+  const mainData = USER_MAIN_DATA.filter((user) => user.id === userId)[0]
+    .keyData;
   const formatedData = {};
 
   switch (element) {
@@ -52,9 +58,8 @@ const getNutritionElementDataByUserId = (element) => {
 /**
  * retrieve the main user info (first name, last name, today score)
  * US #5
- * @param {number} id
  */
-const getUserMainDataById = (id) => {
+const getUserMainDataById = () => {
   return USER_MAIN_DATA.filter((user) => user.id === userId)[0];
 };
 
@@ -68,24 +73,25 @@ const getUserMainDataById = (id) => {
  * get daily user activity sessions
  * US #6
  *
- * @param   {Number}  id  user id
- *
- * @return  {Array.<Object>}      session object : day, kilogram and calories
+//  * @return  {Array.<Object>}      session object : day, kilogram and calories
+ * @return  {Object}      dailyActivity Array of objects (day, kilogram and calories), units for left YAxis and right YAxis
  */
-const getUserDailyActivityById = (id) => {
-  const userActivity = USER_ACTIVITY.filter((user) => user.userId === id)[0];
+const getUserDailyActivityById = () => {
+  const userActivity = USER_ACTIVITY.filter(
+    (user) => user.userId === userId
+  )[0];
   const dailyActivity = userActivity.sessions.map((session) => {
     return {
       ...session,
       day: session.day.split("-")[2],
     };
   });
-  // return {
-  //   dailyActivity,
-  //   unitLeft:"arbre",
-  //   unitRight:"fleur"
-  // };
-  return dailyActivity;
+  return {
+    dailyActivity,
+    unitLeft:"kCal",
+    unitRight:"kg"
+  };
+  // return dailyActivity;
 };
 
 // /**
@@ -96,9 +102,9 @@ const getUserDailyActivityById = (id) => {
 //     (userActivity) => userActivity.userId === id
 //   ).shift();
 
-const getUserAverageSessions = (id) => {
+const getUserAverageSessions = () => {
   const sessions = USER_AVERAGE_SESSIONS.filter(
-    (userActivity) => userActivity.userId === id
+    (userActivity) => userActivity.userId === userId
   )[0].sessions;
 
   const days = ["L", "M", "M", "J", "V", "S", "D"];
@@ -135,7 +141,7 @@ const getUserPerformance = (id) =>
   ).shift();
 
 module.exports = {
-  getUserId,
+  // getUserId,
   getUserMainDataById,
   getNutritionElementDataByUserId,
   // getUserActivityById,
