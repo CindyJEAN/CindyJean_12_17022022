@@ -11,8 +11,6 @@ export default function activityKindChart() {
       <ResponsiveContainer width="99%">
         <RadarChart
           outerRadius={90}
-          width={730}
-          height={250}
           data={performanceData}
         >
           <PolarGrid />

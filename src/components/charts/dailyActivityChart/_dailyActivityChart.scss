@@ -5,8 +5,9 @@
   background-color: $backgroundLight;
   // padding: 1rem 1.8rem 2rem;
   padding: 1rem 0.5rem 2rem 1.8rem;
+  grid-area: graph1;
 
-  width: 100%;
+  // width: 100%;
   
   .recharts-surface:hover {
     cursor: pointer;

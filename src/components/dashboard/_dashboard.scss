@@ -7,8 +7,9 @@
   width: calc(90% - #{$headerWidth});
   // width: calc(80% - #{$headerWidth});
   max-width: 1440px;
+  max-height: calc(100% - #{$headerHeight} - 32px);
   // max-width: 1126px;
-  
+
   .contrastText {
     color: $colorPrimary;
   }
@@ -19,29 +20,48 @@
     margin: 1rem auto;
   }
 
-  p {
+  > p {
     font-size: 1.125rem;
   }
 
   .dashboardData {
     display: grid;
+    // max-height: 60vh;
     column-gap: 1rem;
     // height: fit-content;
     height: 60vh;
-    grid-template-columns: auto 230px;
+    grid-template-columns: auto 180px;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     
     @include largeScreen {
-      column-gap: 3rem;
+      column-gap: 2rem;
       margin-top: 4rem;
+      margin-bottom: 3rem;
+      height: auto;
       grid-template-columns: auto 250px;
     }
 
     .dashboardDataGraphs {
-      display: flex;
-      flex-wrap: wrap;
-      row-gap: 2rem;
+      // display: flex;
+      // flex-wrap: wrap;
+      row-gap: 1rem;
+      column-gap: 1rem;
       justify-content: space-between;
+
+      display: grid;
+      grid-template-areas:
+        "graph1 graph1 graph1"
+        "graph2 graph3 graph4";
+      // grid-template-rows: 220px 160px;
+      // grid-template-rows: 1.5fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+
+      @include largeScreen {
+        row-gap: 2rem;
+        column-gap: 2rem;
+        grid-template-rows: 320px 260px;
+      }
     }
 
     .dashboardDataInfoCards {
@@ -50,6 +70,7 @@
       justify-content: space-between;
       height: 100%;
       width: fit-content;
+
     }
   }
 }

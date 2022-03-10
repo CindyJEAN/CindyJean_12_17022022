@@ -1,0 +1,14 @@
+@import "../../../base/utils";
+
+.scoreChartComponent {
+  @extend .dashboardItem;
+  padding: 1.5rem;
+  // width: 30%;
+  background-color: $backgroundLight;
+
+  .chartTitle {
+    font-weight: 500;
+  }
+
+
+}

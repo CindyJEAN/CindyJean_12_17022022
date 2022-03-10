@@ -1,9 +1,10 @@
+import ActivityKindChart from "../charts/activityKindChart/activityKindChart";
 import AverageSessionsChart from "../charts/averageSessionsChart/averageSessionsChart";
 import DailyActivityChart from "../charts/dailyActivityChart/dailyActivityChart";
 import InfoCard from "../infoCard/infoCard";
 import React from "react";
+import ScoreChart from "../charts/scoreChart/scoreChart";
 import { getUserMainDataById } from "../../data/dataManager";
-import ActivityKindChart from "../charts/activityKindChart/activityKindChart";
 
 export default function Dashboard() {
   const userMainData = getUserMainDataById();
@@ -23,6 +24,7 @@ export default function Dashboard() {
           <DailyActivityChart />
           <AverageSessionsChart />
           <ActivityKindChart />
+          <ScoreChart />
         </div>
 
         <div className="dashboardDataInfoCards">

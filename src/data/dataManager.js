@@ -63,6 +63,18 @@ const getUserMainDataById = () => {
   return USER_MAIN_DATA.filter((user) => user.id === userId)[0];
 };
 
+/**
+ * get user goal completion score
+ * US #8
+ *
+ * @return  {Object}  score
+ */
+const getUserScoreById = () => {
+  const score = getUserMainDataById().todayScore * 100;
+
+  return { value: score };
+};
+
 // /**
 //  * @param {number} id
 //  */
@@ -148,8 +160,6 @@ const getUserPerformance = () => {
   return userPerformance;
 };
 
-//TODO function toGet todayScore (US #8), par usermaindata
-
 module.exports = {
   // getUserId,
   getUserMainDataById,
@@ -158,4 +168,5 @@ module.exports = {
   getUserAverageSessions,
   getUserPerformance,
   getUserDailyActivityById,
+  getUserScoreById,
 };

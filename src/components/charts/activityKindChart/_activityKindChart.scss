@@ -3,7 +3,8 @@
 .activityKindChartComponent {
   @extend .dashboardItem;
   background-color: $backgroundDark;
-  width: 30%;
+  // width: 30%;
+  
 
   .recharts-polar-grid-angle {
     display: none;

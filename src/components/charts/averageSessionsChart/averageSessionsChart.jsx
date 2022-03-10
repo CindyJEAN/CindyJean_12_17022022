@@ -16,10 +16,8 @@ export default function AverageSessionsChart() {
 
   return (
     <div className="averageSessionsChartComponent">
-      <ResponsiveContainer width="100%">
+      <ResponsiveContainer width="99%">
         <LineChart
-          width={258}
-          height={263}
           data={averageSessions}
           margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
           // margin={{ right: -5, left: -5 }}
