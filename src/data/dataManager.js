@@ -88,8 +88,8 @@ const getUserDailyActivityById = () => {
 
   return {
     dailyActivity,
-    unitLeft:"kCal",
-    unitRight:"kg"
+    unitLeft: "kCal",
+    unitRight: "kg",
   };
 };
 
@@ -103,7 +103,7 @@ const getUserDailyActivityById = () => {
 
 /**
  * get formated average sessions
- *
+ * US #7
  * @return  {Array<Object>}  array of objects : day (in week), sessionLength
  */
 const getUserAverageSessions = () => {
@@ -126,23 +126,29 @@ const getUserAverageSessions = () => {
       day: days[dayIndex],
     };
   });
-
-  // const totalSessionsLength = sessions.reduce(
-  //   (acc, curr) => acc + curr.sessionLength,
-  //   0
-  // );
-  // const average = totalSessionsLength / sessions.length;
-  // return { average, formatedSessions };
   return formatedSessions;
 };
 
 /**
- * @param {number} id
+ * get user activity kind performance
+ * US #9
+ * @return {Array<Object>} array of objects (kind of activity, value)
  */
-const getUserPerformance = (id) =>
-  USER_PERFORMANCE.filter(
-    (userPerformance) => userPerformance.userId === id
-  ).shift();
+const getUserPerformance = () => {
+  const performanceData = USER_PERFORMANCE.filter(
+    (userPerformance) => userPerformance.userId === userId
+  )[0];
+
+  const userPerformance = performanceData.data.map((data) => {
+    return {
+      ...data,
+      kind: performanceData.kind[data.kind],
+    };
+  });
+  return userPerformance;
+};
+
+//TODO function toGet todayScore (US #8), par usermaindata
 
 module.exports = {
   // getUserId,

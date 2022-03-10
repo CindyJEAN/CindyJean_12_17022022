@@ -1,0 +1,21 @@
+@import "../../../base/utils";
+
+.activityKindChartComponent {
+  @extend .dashboardItem;
+  background-color: $backgroundDark;
+  width: 30%;
+
+  .recharts-polar-grid-angle {
+    display: none;
+  }
+  .recharts-polar-grid-concentric-polygon {
+    stroke: #fff;
+  }
+
+  .recharts-polar-angle-axis-tick-value {
+    fill: #fff;
+    text-transform: capitalize;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+}

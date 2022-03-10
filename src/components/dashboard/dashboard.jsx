@@ -3,6 +3,7 @@ import DailyActivityChart from "../charts/dailyActivityChart/dailyActivityChart"
 import InfoCard from "../infoCard/infoCard";
 import React from "react";
 import { getUserMainDataById } from "../../data/dataManager";
+import ActivityKindChart from "../charts/activityKindChart/activityKindChart";
 
 export default function Dashboard() {
   const userMainData = getUserMainDataById();
@@ -21,6 +22,7 @@ export default function Dashboard() {
         <div className="dashboardDataGraphs">
           <DailyActivityChart />
           <AverageSessionsChart />
+          <ActivityKindChart />
         </div>
 
         <div className="dashboardDataInfoCards">

@@ -29,11 +29,7 @@ export default function DailyActivityChart() {
             <tspan>Activité quotidienne</tspan>
           </text>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis
-            dataKey="day"
-            tickLine={false}
-            tick={{ transform: "translate(0, 15)" }}
-          />
+          <XAxis dataKey="day" tickLine={false} tickMargin={15} />
           <YAxis
             yAxisId="kg"
             dataKey="kilogram"
@@ -41,7 +37,7 @@ export default function DailyActivityChart() {
             orientation="right"
             axisLine={false}
             tickLine={false}
-            tick={{ transform: "translate(20, 0)" }}
+            tickMargin={20}
           />
           <YAxis yAxisId="calories" dataKey="calories" hide={true} />
           <Tooltip

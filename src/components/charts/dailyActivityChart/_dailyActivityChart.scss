@@ -2,7 +2,10 @@
 
 .dailyActivityChartComponent {
   @extend .dashboardItem;
-  padding: 1rem 1.8rem 2rem;
+  background-color: $backgroundLight;
+  // padding: 1rem 1.8rem 2rem;
+  padding: 1rem 0.5rem 2rem 1.8rem;
+
   width: 100%;
   
   .recharts-surface:hover {

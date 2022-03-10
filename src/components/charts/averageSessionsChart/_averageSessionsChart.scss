@@ -2,9 +2,9 @@
 
 .averageSessionsChartComponent {
   @extend .dashboardItem;
-  // padding: 1rem 0;
-  padding: 1rem 1.8rem;
-  width: 33%;
+  padding: 1rem 0;
+  // padding: 1rem 1.8rem;
+  width: 30%;
   background-color: $colorPrimary;
 
   .recharts-surface:hover {
@@ -37,4 +37,5 @@
     margin: 1rem;
     background-color: blue;
   }
+
 }

@@ -13,16 +13,16 @@ import { getUserAverageSessions } from "../../../data/dataManager";
 
 export default function AverageSessionsChart() {
   const averageSessions = getUserAverageSessions();
-  console.log("averageSessions", averageSessions);
 
   return (
     <div className="averageSessionsChartComponent">
-      <ResponsiveContainer width="99%">
+      <ResponsiveContainer width="100%">
         <LineChart
-          width={730}
-          height={250}
+          width={258}
+          height={263}
           data={averageSessions}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
+          // margin={{ right: -5, left: -5 }}
         >
           <text
             x={0}
@@ -34,7 +34,11 @@ export default function AverageSessionsChart() {
           >
             <tspan>Durée moyenne des sessions</tspan>
           </text>
-          <XAxis dataKey="day" axisLine={false} tickLine={false} />
+          <XAxis
+            dataKey="day"
+            axisLine={false}
+            tickLine={false}
+          />
           <YAxis
             dataKey="sessionLength"
             hide={true}

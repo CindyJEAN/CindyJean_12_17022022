@@ -2,6 +2,7 @@
 
 .infoCard {
   @extend .dashboardItem;
+  background-color: $backgroundLight;
   padding: 1.3rem;
   display: grid;
   column-gap: 1.5rem;
