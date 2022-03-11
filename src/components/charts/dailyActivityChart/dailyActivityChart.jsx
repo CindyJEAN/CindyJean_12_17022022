@@ -8,6 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { dark, red } from "../chartsTheme";
 import DailyActivityCustomTooltip from "./dailyActivityCustomTooltip";
 import React from "react";
 import { getUserDailyActivityById } from "../../../data/dataManager";
@@ -17,7 +18,7 @@ export default function DailyActivityChart() {
 
   return (
     <div className="dailyActivityChartComponent">
-      <ResponsiveContainer width="99%" >
+      <ResponsiveContainer width="99%">
         <BarChart data={dailyActivity} barGap={8}>
           <text
             x={0}
@@ -60,7 +61,7 @@ export default function DailyActivityChart() {
           />
           <Bar
             dataKey="kilogram"
-            fill="#282D30"
+            fill={dark}
             barSize={8}
             radius={[10, 10, 0, 0]}
             name={`Poids (${unitRight})`}
@@ -70,7 +71,7 @@ export default function DailyActivityChart() {
           <Bar
             yAxisId="calories"
             dataKey="calories"
-            fill="#E60000"
+            fill={red}
             barSize={8}
             radius={[10, 10, 0, 0]}
             name={`Calories brûlées (${unitLeft})`}

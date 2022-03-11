@@ -16,22 +16,13 @@ export default function AverageSessionsChart() {
 
   return (
     <div className="averageSessionsChartComponent">
-      <ResponsiveContainer width="99%">
+      <h2 className="chartTitle">Durée moyenne des sessions</h2>
+      <ResponsiveContainer width="99%" >
         <LineChart
           data={averageSessions}
-          margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
+          margin={{ top: 50, right: 20, left: 20, bottom: 0 }}
           // margin={{ right: -5, left: -5 }}
         >
-          <text
-            x={0}
-            y={10}
-            textAnchor="left"
-            dominantBaseline="hanging"
-            className="chartTitle"
-            // width={100}
-          >
-            <tspan>Durée moyenne des sessions</tspan>
-          </text>
           <XAxis
             dataKey="day"
             axisLine={false}
@@ -40,7 +31,7 @@ export default function AverageSessionsChart() {
           <YAxis
             dataKey="sessionLength"
             hide={true}
-            domain={["dataMin-20", "dataMax+20"]}
+            domain={["dataMin-20", "dataMax+10"]}
           />
           <Tooltip content={<AverageSessionsCustomTooltip />} />
           <Line

@@ -6,6 +6,20 @@ const {
 } = require("./data");
 
 /**
+ * translated terms
+ *
+ * @var {Object}
+ */
+const translate = {
+  cardio: "cardio",
+  energy: "énergie",
+  endurance: "endurance",
+  strength: "force",
+  speed: "vitesse",
+  intensity: "intensité",
+};
+
+/**
  * get user id from url
  *
  * @return  {Number}  user id
@@ -151,12 +165,13 @@ const getUserPerformance = () => {
     (userPerformance) => userPerformance.userId === userId
   )[0];
 
-  const userPerformance = performanceData.data.map((data) => {
-    return {
-      ...data,
-      kind: performanceData.kind[data.kind],
-    };
-  });
+  const userPerformance = [];
+  for (let i = performanceData.data.length; i > 0; i--) {
+    userPerformance.push({
+      value: performanceData.data[i - 1].value,
+      kind: translate[performanceData.kind[i]],
+    });
+  }
   return userPerformance;
 };
 

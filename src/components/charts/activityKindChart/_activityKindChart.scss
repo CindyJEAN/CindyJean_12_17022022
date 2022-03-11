@@ -4,7 +4,10 @@
   @extend .dashboardItem;
   background-color: $backgroundDark;
   // width: 30%;
-  
+
+  > div {
+    margin: auto;
+  }
 
   .recharts-polar-grid-angle {
     display: none;
@@ -16,7 +19,8 @@
   .recharts-polar-angle-axis-tick-value {
     fill: #fff;
     text-transform: capitalize;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    transform: scale(1.05) translate(-2%, -1%);
     font-weight: 500;
   }
 }

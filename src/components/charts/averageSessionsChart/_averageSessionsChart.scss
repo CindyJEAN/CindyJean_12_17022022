@@ -13,13 +13,16 @@
 
   .recharts-cartesian-axis-tick-value {
     fill: rgba(255, 255, 255, 0.6);
+    font-size: .8rem;
   }
 
   .chartTitle {
     font-weight: 500;
     font-size: 1rem;
-
-    fill: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    margin: 1rem 2rem;
+    width: 150px;
   }
 
   .customTooltip {
@@ -36,6 +39,10 @@
   .dot {
     margin: 1rem;
     background-color: blue;
+  }
+
+  .recharts-tooltip-cursor {
+    display: none;
   }
 
 }
