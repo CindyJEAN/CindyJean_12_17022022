@@ -3,12 +3,9 @@
 .dailyActivityChartComponent {
   @extend .dashboardItem;
   background-color: $backgroundLight;
-  // padding: 1rem 1.8rem 2rem;
   padding: 1rem 0.5rem 2rem 1.8rem;
   grid-area: graph1;
 
-  // width: 100%;
-  
   .recharts-surface:hover {
     cursor: pointer;
   }
@@ -55,7 +52,6 @@
     .tooltipText {
       color: white;
       font-size: 0.6rem;
-      // font-size: 0.5rem;
       font-weight: 500;
       margin: 0;
     }

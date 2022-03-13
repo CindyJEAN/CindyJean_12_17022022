@@ -22,7 +22,7 @@ export default function ScoreChart() {
           data={score}
           startAngle={220}
           endAngle={-140}
-          barSize={10}
+          barSize={8}
         >
           <text
             x={0}

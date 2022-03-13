@@ -3,7 +3,6 @@
 .scoreChartComponent {
   @extend .dashboardItem;
   padding: 1.5rem;
-  // width: 30%;
   position: relative;
   background-color: $backgroundLight;
 
@@ -11,21 +10,12 @@
     font-weight: 500;
   }
 
-  // .recharts-radial-bar-sector {
-  //   z-index: 50;
-  // }
-
-  // .recharts-legend-wrapper {
-  //   z-index: 20;
-  // }
-
   .scoreInfo {
     position: absolute;
     width: 40%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    // top: 40%;
     top: 35%;
     left: 30%;
 

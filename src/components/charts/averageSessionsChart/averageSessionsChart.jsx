@@ -21,7 +21,6 @@ export default function AverageSessionsChart() {
         <LineChart
           data={averageSessions}
           margin={{ top: 50, right: 20, left: 20, bottom: 0 }}
-          // margin={{ right: -5, left: -5 }}
         >
           <XAxis
             dataKey="day"

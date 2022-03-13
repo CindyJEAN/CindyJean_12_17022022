@@ -16,7 +16,7 @@ export default function activityKindChart() {
   return (
     <div className="activityKindChartComponent">
       <ResponsiveContainer width="99%">
-        <RadarChart outerRadius={80} data={performanceData}>
+        <RadarChart outerRadius={75} data={performanceData}>
           <PolarGrid />
           <PolarAngleAxis dataKey="kind" offset={15}/>
           <Radar
