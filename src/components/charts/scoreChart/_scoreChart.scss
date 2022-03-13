@@ -4,11 +4,53 @@
   @extend .dashboardItem;
   padding: 1.5rem;
   // width: 30%;
+  position: relative;
   background-color: $backgroundLight;
 
   .chartTitle {
     font-weight: 500;
   }
 
+  // .recharts-radial-bar-sector {
+  //   z-index: 50;
+  // }
 
+  // .recharts-legend-wrapper {
+  //   z-index: 20;
+  // }
+
+  .scoreInfo {
+    position: absolute;
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    // top: 40%;
+    top: 35%;
+    left: 30%;
+
+    p {
+      margin: 0;
+      text-align: center;
+      line-height: 1.43;
+
+      &:first-of-type {
+        font-weight: 700;
+        font-size: 1.3rem;
+
+        @include largeScreen {
+          font-size: 1.6rem;
+        }
+      }
+      &:last-of-type {
+        font-weight: 500;
+        font-size: 0.8rem;
+        color: $grey;
+
+        @include largeScreen {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
 }

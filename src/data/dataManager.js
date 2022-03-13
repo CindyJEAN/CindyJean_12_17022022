@@ -86,7 +86,7 @@ const getUserMainDataById = () => {
 const getUserScoreById = () => {
   const score = getUserMainDataById().todayScore * 100;
 
-  return { value: score };
+  return { name: "score", value: score };
 };
 
 // /**
