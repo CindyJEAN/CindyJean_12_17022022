@@ -11,14 +11,13 @@ import { red } from "../chartsTheme";
 
 export default function activityKindChart() {
   const performanceData = getUserPerformance();
-  console.log("performanceData", performanceData);
 
   return (
     <div className="activityKindChartComponent">
       <ResponsiveContainer width="99%">
         <RadarChart outerRadius={75} data={performanceData}>
           <PolarGrid />
-          <PolarAngleAxis dataKey="kind" offset={15}/>
+          <PolarAngleAxis dataKey="kind" offset={15} />
           <Radar
             name="activité"
             dataKey="value"

@@ -1,13 +1,12 @@
 import {
-  Legend,
   PolarAngleAxis,
   RadialBar,
   RadialBarChart,
   ResponsiveContainer,
 } from "recharts";
-import { dark, redLight } from "../chartsTheme";
 import React from "react";
 import { getUserScoreById } from "../../../data/dataManager";
+import { redLight } from "../chartsTheme";
 
 export default function ScoreChart() {
   // const score = [{name: "score", value: 88}];
