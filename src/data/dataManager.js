@@ -5,6 +5,46 @@ const {
   USER_PERFORMANCE,
 } = require("./data");
 
+// const { useFetch } = require("./useFetch");
+import { useEffect, useState } from "react";
+
+export function useFetch(url) {
+  const [data, setData] = useState({});
+
+  const [isLoading, setLoading] = useState(true);
+
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (!url) return;
+
+    setLoading(true);
+
+    async function fetchData() {
+      try {
+        const response = await fetch(server+url);
+
+        const data = await response.json();
+
+        setData(data);
+      } catch (err) {
+        console.log(err);
+
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, [url]);
+
+  return { isLoading, data, error };
+}
+
+//TODO const url/endpoints : array of objects with 4 endpoints : name and url, used to call useFetch in functions.
+//TODO check return comment of functions in components to see if return is named
+
 /**
  * translated terms
  *
@@ -19,6 +59,7 @@ const translate = {
   intensity: "intensité",
 };
 
+//----- userId
 /**
  * get user id from url
  *
@@ -31,50 +72,59 @@ const getUserId = () => {
 
 const userId = getUserId();
 
+const server = "http://localhost:3000/user/"+userId;
+//----- end
+
+/**
+ * retrieve the main user info (first name, last name, today score)
+ * US #5
+ * @return {Object} data
+ */
+const getUserMainDataById = () => {
+  const url = `http://localhost:3000/user/${userId}`;
+  const { data } = useFetch(url);
+  return data;
+};
+
+//----- functions using getUserMainDataById
 /**
  * format data for nutrition element for user
  * US #10
  *
  * @param   {String}  element  nutrition element
  *
- * @return  {Object}           label, unit and value of element
+ * @return  {Object}         formatedData: label, unit and value of element
  */
 const getNutritionElementDataByUserId = (element) => {
-  const mainData = USER_MAIN_DATA.filter((user) => user.id === userId)[0]
-    .keyData;
+  const { data } = getUserMainDataById();
+  const keyData = data?.keydata;
+  // const { keyData } = data;
+  console.log("keyData", keyData);
   const formatedData = {};
 
   switch (element) {
     case "calorie":
       formatedData.label = "Calories";
       formatedData.unit = "kCal";
-      formatedData.value = mainData.calorieCount;
+      formatedData.value = keyData.calorieCount;
       break;
     case "protein":
       formatedData.label = "Protéines";
       formatedData.unit = "g";
-      formatedData.value = mainData.proteinCount;
+      formatedData.value = keyData.proteinCount;
       break;
     case "carbohydrate":
       formatedData.label = "Glucides";
       formatedData.unit = "g";
-      formatedData.value = mainData.carbohydrateCount;
+      formatedData.value = keyData.carbohydrateCount;
       break;
     case "lipid":
       formatedData.label = "Lipides";
       formatedData.unit = "g";
-      formatedData.value = mainData.lipidCount;
+      formatedData.value = keyData.lipidCount;
       break;
   }
   return formatedData;
-};
-
-/**
- * retrieve the main user info (first name, last name, today score)
- * US #5
- */
-const getUserMainDataById = () => {
-  return USER_MAIN_DATA.filter((user) => user.id === userId)[0];
 };
 
 /**
@@ -88,12 +138,7 @@ const getUserScoreById = () => {
 
   return { name: "score", value: score };
 };
-
-// /**
-//  * @param {number} id
-//  */
-// const getUserActivityById = (id) =>
-//   USER_ACTIVITY.filter((userActivity) => userActivity.userId === id).shift();
+//----- end
 
 /**
  * get daily user activity sessions
@@ -102,30 +147,30 @@ const getUserScoreById = () => {
  * @return  {Object}      array of objects (day, kilogram and calories), units for left YAxis and right YAxis
  */
 const getUserDailyActivityById = () => {
-  const userActivity = USER_ACTIVITY.filter(
-    (user) => user.userId === userId
-  )[0];
-  const dailyActivity = userActivity.sessions.map((session) => {
+  const { isLoading, data, error } = useFetch("/activity");
+  if ((isLoading && Object.keys(data).length ===0) || error) return { isLoading, data, error};
+
+  // const userActivity = USER_ACTIVITY.filter(
+  //   (user) => user.userId === userId
+  // )[0];
+
+  return { isLoading, data : formatDailyActivity(data.data), error };
+};
+
+function formatDailyActivity(data){
+  console.log(data);
+  const dailyActivity = data.sessions.map((session) => {
     return {
       ...session,
       day: session.day.split("-")[2],
     };
   });
-
-  return {
+  return   {
     dailyActivity,
     unitLeft: "kCal",
     unitRight: "kg",
   };
-};
-
-// /**
-//  * @param {number} id
-//  */
-// const getUserAverageSession = (id) =>
-//   USER_AVERAGE_SESSIONS.filter(
-//     (userActivity) => userActivity.userId === id
-//   ).shift();
+}
 
 /**
  * get formated average sessions
@@ -176,10 +221,8 @@ const getUserPerformance = () => {
 };
 
 module.exports = {
-  // getUserId,
   getUserMainDataById,
   getNutritionElementDataByUserId,
-  // getUserActivityById,
   getUserAverageSessions,
   getUserPerformance,
   getUserDailyActivityById,

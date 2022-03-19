@@ -7,8 +7,8 @@ import ScoreChart from "../charts/scoreChart/scoreChart";
 import { getUserMainDataById } from "../../data/dataManager";
 
 export default function Dashboard() {
-  const userMainData = getUserMainDataById();
-  const name = userMainData.userInfos.firstName;
+  const { data } = getUserMainDataById();
+  const name = data?.userInfos.firstName;
 
   const nutritionElements = ["calorie", "protein", "carbohydrate", "lipid"];
 
@@ -27,11 +27,11 @@ export default function Dashboard() {
           <ScoreChart />
         </div>
 
-        <div className="dashboardDataInfoCards">
+        {/* <div className="dashboardDataInfoCards">
           {nutritionElements.map((element, index) => (
             <InfoCard key={index} type={element} />
           ))}
-        </div>
+        </div> */}
       </div>
     </main>
   );

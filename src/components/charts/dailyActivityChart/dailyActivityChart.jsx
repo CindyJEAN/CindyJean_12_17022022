@@ -14,7 +14,12 @@ import React from "react";
 import { getUserDailyActivityById } from "../../../data/dataManager";
 
 export default function DailyActivityChart() {
-  const { dailyActivity, unitLeft, unitRight } = getUserDailyActivityById();
+  const { isLoading, data, error } = getUserDailyActivityById();
+  console.log( isLoading,"|", data,"|", error );
+
+  if (isLoading) return (<div>chargement...</div>);
+  if (error) return (<div>erreur...</div>);
+  const { dailyActivity, unitLeft, unitRight } = data;
 
   return (
     <div className="dailyActivityChartComponent">

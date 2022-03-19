@@ -4,7 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This repo contains the code to run the front for the sports analytics dashboard Sportee.
 
 ## 1. Prerequisites
-- 
+- <!-- backend repo : link. Follow instructions before launching frontend>
+- <!-- npm ?>
 ## 2. Installation
 
 In the project directory, you can run:
