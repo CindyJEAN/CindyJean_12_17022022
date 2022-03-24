@@ -5,17 +5,23 @@ import {
   RadarChart,
   ResponsiveContainer,
 } from "recharts";
-import React from "react";
-import { getUserPerformance } from "../../../data/dataManager";
+import React, { useEffect } from "react";
+import { StoreContext } from "../../../providers/store";
 import { red } from "../chartsTheme";
+import { getUserPerformance } from "../../../services/dataManager";
 
 export default function activityKindChart() {
-  const performanceData = getUserPerformance();
+  // const performanceData = getUserPerformance();
+  const [data] = React.useContext(StoreContext);
+
+  useEffect(() => {
+    getUserPerformance();
+  }, []);
 
   return (
     <div className="activityKindChartComponent">
       <ResponsiveContainer width="99%">
-        <RadarChart outerRadius={75} data={performanceData}>
+        <RadarChart outerRadius={75} data={data.performance}>
           <PolarGrid />
           <PolarAngleAxis dataKey="kind" offset={15} />
           <Radar

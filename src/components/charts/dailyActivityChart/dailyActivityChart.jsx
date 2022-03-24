@@ -8,23 +8,23 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import React, { useEffect } from "react";
 import { dark, red } from "../chartsTheme";
 import DailyActivityCustomTooltip from "./dailyActivityCustomTooltip";
-import React from "react";
-import { getUserDailyActivityById } from "../../../data/dataManager";
+import { StoreContext } from "../../../providers/store";
+import { getUserDailyActivity } from "../../../services/dataManager";
 
 export default function DailyActivityChart() {
-  const { isLoading, data, error } = getUserDailyActivityById();
-  console.log( isLoading,"|", data,"|", error );
+  const [data] = React.useContext(StoreContext);
 
-  if (isLoading) return (<div>chargement...</div>);
-  if (error) return (<div>erreur...</div>);
-  const { dailyActivity, unitLeft, unitRight } = data;
+  useEffect(() => {
+    getUserDailyActivity();
+  }, []);
 
   return (
     <div className="dailyActivityChartComponent">
       <ResponsiveContainer width="99%">
-        <BarChart data={dailyActivity} barGap={8}>
+        <BarChart data={data.dailyActivity.activity} barGap={8}>
           <text
             x={0}
             y={10}
@@ -50,8 +50,8 @@ export default function DailyActivityChart() {
             offset={60}
             content={
               <DailyActivityCustomTooltip
-                unitLeft={unitLeft}
-                unitRight={unitRight}
+                unitLeft={data.unitLeft}
+                unitRight={data.unitRight}
               />
             }
           />
@@ -69,9 +69,9 @@ export default function DailyActivityChart() {
             fill={dark}
             barSize={8}
             radius={[10, 10, 0, 0]}
-            name={`Poids (${unitRight})`}
+            name={`Poids (${data.unitRight})`}
             yAxisId="kg"
-            unit={unitRight}
+            unit={data.unitRight}
           />
           <Bar
             yAxisId="calories"
@@ -79,8 +79,8 @@ export default function DailyActivityChart() {
             fill={red}
             barSize={8}
             radius={[10, 10, 0, 0]}
-            name={`Calories brûlées (${unitLeft})`}
-            unit={unitLeft}
+            name={`Calories brûlées (${data.unitLeft})`}
+            unit={data.unitLeft}
           />
         </BarChart>
       </ResponsiveContainer>

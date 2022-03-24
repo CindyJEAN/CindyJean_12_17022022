@@ -6,20 +6,25 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import React, { useEffect } from "react";
 import AverageSessionsCustomActiveDot from "./averageSessionsCustomActiveDot";
 import AverageSessionsCustomTooltip from "./averageSessionsCustomTooltip";
-import React from "react";
-import { getUserAverageSessions } from "../../../data/dataManager";
+import { StoreContext } from "../../../providers/store";
+import { getUserAverageSessions } from "../../../services/dataManager";
 
 export default function AverageSessionsChart() {
-  const averageSessions = getUserAverageSessions();
+  const [data] = React.useContext(StoreContext);
+
+  useEffect(() => {
+    getUserAverageSessions();
+  }, []);
 
   return (
     <div className="averageSessionsChartComponent">
       <h2 className="chartTitle">Durée moyenne des sessions</h2>
       <ResponsiveContainer width="99%" >
         <LineChart
-          data={averageSessions}
+          data={data.averageSessions}
           margin={{ top: 50, right: 20, left: 20, bottom: 0 }}
         >
           <XAxis

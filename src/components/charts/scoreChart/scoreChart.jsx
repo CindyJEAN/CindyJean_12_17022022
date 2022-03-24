@@ -4,13 +4,19 @@ import {
   RadialBarChart,
   ResponsiveContainer,
 } from "recharts";
-import React from "react";
-import { getUserScoreById } from "../../../data/dataManager";
+import React, { useEffect } from "react";
+import { StoreContext } from "../../../providers/store";
 import { redLight } from "../chartsTheme";
+import { getUserScore } from "../../../services/dataManager";
 
 export default function ScoreChart() {
   // const score = [{name: "score", value: 88}];
-  const score = [getUserScoreById()];
+  // const score = [getUserScoreById()];
+  const [data] = React.useContext(StoreContext);
+
+  useEffect(() => {
+    getUserScore();
+  }, []);
 
   return (
     <div className="scoreChartComponent">
@@ -18,7 +24,7 @@ export default function ScoreChart() {
         <RadialBarChart
           innerRadius="80%"
           outerRadius="100%"
-          data={score}
+          data={data.score}
           startAngle={220}
           endAngle={-140}
           barSize={8}
@@ -49,7 +55,7 @@ export default function ScoreChart() {
         </RadialBarChart>
       </ResponsiveContainer>
       <div className="scoreInfo">
-        <p>{score[0].value}%</p>
+        <p>{data.score[0].value}%</p>
         <p>de votre objectif</p>
       </div>
     </div>
