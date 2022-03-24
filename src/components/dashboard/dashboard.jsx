@@ -2,23 +2,22 @@ import React, { useEffect } from "react";
 import ActivityKindChart from "../charts/activityKindChart/activityKindChart";
 import AverageSessionsChart from "../charts/averageSessionsChart/averageSessionsChart";
 import DailyActivityChart from "../charts/dailyActivityChart/dailyActivityChart";
-// import InfoCard from "../infoCard/infoCard";
 import ScoreChart from "../charts/scoreChart/scoreChart";
-import { StoreContext } from "../../providers/store";
-import { getNutritionElementsData } from "../../services/dataManager";
+import { StoreContext } from "../../providers/Store";
+import { getUserMainData } from "./../../services/dataManager";
 
 export default function Dashboard() {
   const [data] = React.useContext(StoreContext);
-  const nutritionElements = ["calorie", "protein", "carbohydrate", "lipid"];
 
-  // useEffect(() => {
-  //   getNutritionElementsData(nutritionElements);
-  // }, []);
+  useEffect(() => {
+    getUserMainData();
+  }, []);
+  console.log("data in dashboard", data);
 
   return (
     <main className="dashboardPage">
       <h1>
-        Bonjour <span className="contrastText">{data.name}</span>
+        Bonjour <span className="contrastText">{data.userInfos.firstName}</span>
       </h1>
       <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
 
@@ -30,12 +29,24 @@ export default function Dashboard() {
           <ScoreChart />
         </div>
 
-        {/* <div className="dashboardDataInfoCards">
-          {nutritionElements.map((element, index) => (
-            <InfoCard key={index} type={element} />
-          ))}
-        </div> */}
+        <div className="dashboardDataInfoCards">
+          {data.nutritionElements.map((element) => infoCard(element))}
+        </div>
       </div>
     </main>
+  );
+}
+
+function infoCard(element) {
+  const icon = "/icons/icon_" + element.type + ".svg";
+  return (
+    <article key={element.type} className="infoCard">
+      <img src={icon} className={element.type} />
+      <h2>
+        {element.value}
+        {element.unit}
+      </h2>
+      <p>{element.label}</p>
+    </article>
   );
 }

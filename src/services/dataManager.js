@@ -1,4 +1,4 @@
-const { store } = require("../providers/store");
+const { store } = require("../providers/Store");
 const { fetcher } = require("./fetcher");
 
 /**
@@ -28,73 +28,47 @@ const getUserId = () => {
 const userId = getUserId();
 //----- end
 
-/**
- * data loaded from API
- *
- * @var {Array}
- */
-let fromApi = [];
+// /**
+//  * data loaded from API
+//  *
+//  * @var {Array}
+//  */
+// let fromApi = [];
 
 /**
- * update fromApi's values if needed, update name in store and launch automatically rendering
- *
- * @return  {Promise.<void>}
- */
-async function getData() {
-  if (fromApi.length === 0)
-    fromApi = await fetcher(`http://localhost:3000/user/${userId}`);
-  store.set({
-    name: fromApi[store.get].name,
-  });
-}
-
-/**
- * retrieve the main user info (first name)
+ * retrieve the main user info (first name, score...)//TODO
  * US #5
  */
 async function getUserMainData() {
-  if (fromApi.length === 0)
-    fromApi = await fetcher(`http://localhost:3000/user/${userId}`);
+  const fromApi = await fetcher(`http://localhost:3000/user/${userId}`);
+
+  fromApi.data.score = formatUserScore(fromApi.data.todayScore);
+  delete fromApi.data.todayScore;
+
+  fromApi.data.nutritionElements = getNutritionElementsData(
+    fromApi.data.keyData
+  );
+  delete fromApi.data.keyData;
+
   store.set({
-    name: fromApi[store.get].userInfos.firstName,
+    ...fromApi.data,
   });
 }
 
-// /**
-//  * get nutrition element data for user
-//  * US #10
-//  *
-//  * @param   {String}  element  nutrition element
-//  *
-//  */
-// async function getNutritionElementData(element) {
-//   if (fromApi.length === 0)
-//     fromApi = await fetcher(`http://localhost:3000/user/${userId}`);
-//   const keyData = fromApi.data.keyData;
-//   store.set({
-//     nutritionElements: [formatNutritionElementData(element, keyData)],
-//   });
-// }
-
 /**
- * get all nutrition elements data for user
+ * get all nutrition elements data for user and format data
  * US #10
  *
- * @param   {Array.<String>}  elements  nutrition elements
- *
+ * @param   {Object}  keyData  nutrition elements
+ * @return  {Array.<Object>} nutrition elements data formated
  */
-async function getNutritionElementsData(elements) {
-  if (fromApi.length === 0)
-    fromApi = await fetcher(`http://localhost:3000/user/${userId}`);
-  const keyData = fromApi[store.get].keyData;
-
+function getNutritionElementsData(keyData) {
   const nutritionElements = [];
-  elements.forEach((element) => {
-    nutritionElements.push(formatNutritionElementData(element, keyData));
-  });
-  store.set({
-    nutritionElements,
-  });
+  for (const key of Object.keys(keyData)) {
+    const elementType = key.toString().slice(0, -5);
+    nutritionElements.push(formatNutritionElement(elementType, keyData));
+  }
+  return nutritionElements;
 }
 
 /**
@@ -105,7 +79,7 @@ async function getNutritionElementsData(elements) {
  *
  * @return  {Object}         formatedData: label, unit and value of element
  */
-const formatNutritionElementData = (element, keyData) => {
+const formatNutritionElement = (element, keyData) => {
   const formatedData = {};
   switch (element) {
     case "calorie":
@@ -135,17 +109,6 @@ const formatNutritionElementData = (element, keyData) => {
 };
 
 /**
- * get user goal completion score
- * US #8
- */
-async function getUserScore() {
-  const todayScore = store.get.score * 100;
-  store.set({
-    score: formatUserScore(todayScore),
-  });
-}
-
-/**
  * format score for graph
  * US #8
  *
@@ -160,11 +123,14 @@ function formatUserScore(score) {
  * US #6
  */
 async function getUserDailyActivity() {
-  if (fromApi.length === 0)
-    fromApi = await fetcher(`http://localhost:3000/user/${userId}/activity`);
+  const fromApi = await fetcher(
+    `http://localhost:3000/user/${userId}/activity`
+  );
+  // console.log(0, store.get);
   store.set({
-    dailyActivity: formatDailyActivity(fromApi[store.get].sessions),
+    dailyActivity: formatDailyActivity(fromApi.data.sessions),
   });
+  // console.log(1, store.get);
 }
 
 /**
@@ -192,12 +158,11 @@ function formatDailyActivity(data) {
  * US #7
  */
 async function getUserAverageSessions() {
-  if (fromApi.length === 0)
-    fromApi = await fetcher(
-      `http://localhost:3000/user/${userId}/average-sessions`
-    );
+  const fromApi = await fetcher(
+    `http://localhost:3000/user/${userId}/average-sessions`
+  );
   store.set({
-    averageSessions: formatAverageSessions(fromApi[store.get].sessions),
+    averageSessions: formatAverageSessions(fromApi.data.sessions),
   });
 }
 
@@ -230,10 +195,11 @@ function formatAverageSessions(sessions) {
  * US #9
  */
 async function getUserPerformance() {
-  if (fromApi.length === 0)
-    fromApi = await fetcher(`http://localhost:3000/user/${userId}/performance`);
+  const fromApi = await fetcher(
+    `http://localhost:3000/user/${userId}/performance`
+  );
   store.set({
-    performance: formatUserPerformance(fromApi[store.get]),
+    performance: formatUserPerformance(fromApi.data),
   });
 }
 
@@ -254,12 +220,8 @@ function formatUserPerformance(performanceData) {
 }
 
 module.exports = {
-  getData,
   getUserMainData,
-  // getNutritionElementData,
-  getNutritionElementsData,
   getUserAverageSessions,
   getUserPerformance,
   getUserDailyActivity,
-  getUserScore,
 };

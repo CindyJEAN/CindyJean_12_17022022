@@ -5,7 +5,7 @@
  * @property {Function} set method in order to update values
  */
 import React from "react";
-const defaultData = { name: null };
+import defaultData from "../defaultData";
 
 const StoreContext = React.createContext(undefined);
 /**

@@ -17,7 +17,7 @@
 //   //   //   data.nutritionElements?.find((element) => element.type === type)
 //   //   // );
 //   // }, [data]);
-//   const element = data?.nutritionElements?.find((element) => element.type === type);
+//   // const element = data?.nutritionElements?.find((element) => element.type === type);
 //   // console.log("element", element);
 //   const icon = "/icons/icon_" + type + ".svg";
 

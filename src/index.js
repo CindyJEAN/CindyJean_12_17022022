@@ -2,7 +2,7 @@ import "./app.scss";
 import App from "./app";
 import React from "react";
 import ReactDOM from "react-dom";
-import { StoreProvider } from "./providers/store";
+import { StoreProvider } from "./providers/Store";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(

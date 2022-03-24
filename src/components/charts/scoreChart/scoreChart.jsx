@@ -4,19 +4,13 @@ import {
   RadialBarChart,
   ResponsiveContainer,
 } from "recharts";
-import React, { useEffect } from "react";
-import { StoreContext } from "../../../providers/store";
+import React from "react";
+import { StoreContext } from "../../../providers/Store";
 import { redLight } from "../chartsTheme";
-import { getUserScore } from "../../../services/dataManager";
 
 export default function ScoreChart() {
-  // const score = [{name: "score", value: 88}];
-  // const score = [getUserScoreById()];
   const [data] = React.useContext(StoreContext);
-
-  useEffect(() => {
-    getUserScore();
-  }, []);
+  console.log("data in scoreChart", data);
 
   return (
     <div className="scoreChartComponent">

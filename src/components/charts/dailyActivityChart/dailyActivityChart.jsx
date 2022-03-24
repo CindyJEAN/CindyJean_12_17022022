@@ -11,7 +11,7 @@ import {
 import React, { useEffect } from "react";
 import { dark, red } from "../chartsTheme";
 import DailyActivityCustomTooltip from "./dailyActivityCustomTooltip";
-import { StoreContext } from "../../../providers/store";
+import { StoreContext } from "../../../providers/Store";
 import { getUserDailyActivity } from "../../../services/dataManager";
 
 export default function DailyActivityChart() {

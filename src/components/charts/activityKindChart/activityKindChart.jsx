@@ -6,12 +6,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import React, { useEffect } from "react";
-import { StoreContext } from "../../../providers/store";
-import { red } from "../chartsTheme";
+import { StoreContext } from "../../../providers/Store";
 import { getUserPerformance } from "../../../services/dataManager";
+import { red } from "../chartsTheme";
 
 export default function activityKindChart() {
-  // const performanceData = getUserPerformance();
   const [data] = React.useContext(StoreContext);
 
   useEffect(() => {

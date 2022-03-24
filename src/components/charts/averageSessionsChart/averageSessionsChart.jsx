@@ -9,7 +9,7 @@ import {
 import React, { useEffect } from "react";
 import AverageSessionsCustomActiveDot from "./averageSessionsCustomActiveDot";
 import AverageSessionsCustomTooltip from "./averageSessionsCustomTooltip";
-import { StoreContext } from "../../../providers/store";
+import { StoreContext } from "../../../providers/Store";
 import { getUserAverageSessions } from "../../../services/dataManager";
 
 export default function AverageSessionsChart() {
