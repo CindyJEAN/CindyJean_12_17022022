@@ -3,16 +3,14 @@ import ActivityKindChart from "../charts/activityKindChart/activityKindChart";
 import AverageSessionsChart from "../charts/averageSessionsChart/averageSessionsChart";
 import DailyActivityChart from "../charts/dailyActivityChart/dailyActivityChart";
 import ScoreChart from "../charts/scoreChart/scoreChart";
-import { StoreContext } from "../../providers/Store";
+import { StoreContext } from "../../providers/store";
 import { getUserMainData } from "./../../services/dataManager";
 
 export default function Dashboard() {
   const [data] = React.useContext(StoreContext);
-
   useEffect(() => {
     getUserMainData();
   }, []);
-  console.log("data in dashboard", data);
 
   return (
     <main className="dashboardPage">
@@ -37,6 +35,11 @@ export default function Dashboard() {
   );
 }
 
+/**
+ * gets the infoCard for the given nutrition element
+ * @param {Object} element
+ * @return infoCard jsx with the element's informations
+ */
 function infoCard(element) {
   const icon = "/icons/icon_" + element.type + ".svg";
   return (

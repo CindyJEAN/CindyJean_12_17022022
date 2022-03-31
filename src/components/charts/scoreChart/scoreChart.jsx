@@ -5,12 +5,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import React from "react";
-import { StoreContext } from "../../../providers/Store";
+import { StoreContext } from "../../../providers/store";
 import { redLight } from "../chartsTheme";
 
 export default function ScoreChart() {
   const [data] = React.useContext(StoreContext);
-  console.log("data in scoreChart", data);
 
   return (
     <div className="scoreChartComponent">
@@ -44,7 +43,6 @@ export default function ScoreChart() {
             stroke={redLight}
             fill={redLight}
             cornerRadius={10}
-            // minAngle={30}
           />
         </RadialBarChart>
       </ResponsiveContainer>

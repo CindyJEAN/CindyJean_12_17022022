@@ -1,4 +1,4 @@
-const { store } = require("../providers/Store");
+const { store } = require("../providers/store");
 const { fetcher } = require("./fetcher");
 
 /**
@@ -15,7 +15,6 @@ const translate = {
   intensity: "intensité",
 };
 
-//----- userId
 /**
  * get user id from url
  *
@@ -26,17 +25,10 @@ const getUserId = () => {
   return user === "" || user === undefined ? 12 : Number(user);
 };
 const userId = getUserId();
-//----- end
-
-// /**
-//  * data loaded from API
-//  *
-//  * @var {Array}
-//  */
-// let fromApi = [];
 
 /**
- * retrieve the main user info (first name, score...)//TODO
+ * get the main user info and store the userInfos, score and nutrition elements' info
+ * US #4
  * US #5
  */
 async function getUserMainData() {
@@ -59,7 +51,7 @@ async function getUserMainData() {
  * get all nutrition elements data for user and format data
  * US #10
  *
- * @param   {Object}  keyData  nutrition elements
+ * @param   {Object}  keyData  nutrition elements info
  * @return  {Array.<Object>} nutrition elements data formated
  */
 function getNutritionElementsData(keyData) {
@@ -76,8 +68,8 @@ function getNutritionElementsData(keyData) {
  * US #10
  *
  * @param   {String}  element  nutrition element
- *
- * @return  {Object}         formatedData: label, unit and value of element
+ * @param   {Object}  keyData  nutrition elements info
+ * @return  {Object}         formatedData: type, label, unit and value of element
  */
 const formatNutritionElement = (element, keyData) => {
   const formatedData = {};
@@ -112,31 +104,31 @@ const formatNutritionElement = (element, keyData) => {
  * format score for graph
  * US #8
  *
- * @return  {Array.<Object>}  score object : {name, value in percent}
+ * @param {Number} score between 0 and 1
+ * @return  {Array.<Object>}  score object : { name, value in percent }
  */
 function formatUserScore(score) {
   return [{ name: "score", value: score * 100 }];
 }
 
 /**
- * get daily user activity sessions
+ * get daily user activity sessions and store formated activity
  * US #6
  */
 async function getUserDailyActivity() {
   const fromApi = await fetcher(
     `http://localhost:3000/user/${userId}/activity`
   );
-  // console.log(0, store.get);
   store.set({
     dailyActivity: formatDailyActivity(fromApi.data.sessions),
   });
-  // console.log(1, store.get);
 }
 
 /**
  * format daily user activity sessions
  * US #6
  *
+ * @param {Array} data daily activity sessions
  * @return  {Object}      array of objects (day, kilogram and calories), units for left YAxis and right YAxis
  */
 function formatDailyActivity(data) {
@@ -154,7 +146,7 @@ function formatDailyActivity(data) {
 }
 
 /**
- * get average sessions
+ * get average sessions and store them formated
  * US #7
  */
 async function getUserAverageSessions() {
@@ -169,6 +161,8 @@ async function getUserAverageSessions() {
 /**
  * format average sessions
  * US #7
+ *
+ * @param {Array} sessions average sessions data
  * @return  {Array<Object>}  array of objects : day (in week), sessionLength
  */
 function formatAverageSessions(sessions) {
@@ -191,7 +185,7 @@ function formatAverageSessions(sessions) {
 }
 
 /**
- * get user activity kind performance
+ * get user performance and store formated activity kinds
  * US #9
  */
 async function getUserPerformance() {
@@ -206,6 +200,8 @@ async function getUserPerformance() {
 /**
  * format user activity kind performance
  * US #9
+ *
+ * @param {Object} performanceData data : { kind, data }
  * @return {Array<Object>} array of objects (kind of activity, value)
  */
 function formatUserPerformance(performanceData) {

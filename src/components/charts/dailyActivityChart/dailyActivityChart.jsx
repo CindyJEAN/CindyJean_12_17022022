@@ -11,11 +11,12 @@ import {
 import React, { useEffect } from "react";
 import { dark, red } from "../chartsTheme";
 import DailyActivityCustomTooltip from "./dailyActivityCustomTooltip";
-import { StoreContext } from "../../../providers/Store";
+import { StoreContext } from "../../../providers/store";
 import { getUserDailyActivity } from "../../../services/dataManager";
 
 export default function DailyActivityChart() {
   const [data] = React.useContext(StoreContext);
+  const { activity, unitLeft, unitRight } = data.dailyActivity;
 
   useEffect(() => {
     getUserDailyActivity();
@@ -24,7 +25,7 @@ export default function DailyActivityChart() {
   return (
     <div className="dailyActivityChartComponent">
       <ResponsiveContainer width="99%">
-        <BarChart data={data.dailyActivity.activity} barGap={8}>
+        <BarChart data={activity} barGap={8}>
           <text
             x={0}
             y={10}
@@ -50,8 +51,8 @@ export default function DailyActivityChart() {
             offset={60}
             content={
               <DailyActivityCustomTooltip
-                unitLeft={data.unitLeft}
-                unitRight={data.unitRight}
+                unitLeft={unitLeft}
+                unitRight={unitRight}
               />
             }
           />
@@ -69,9 +70,9 @@ export default function DailyActivityChart() {
             fill={dark}
             barSize={8}
             radius={[10, 10, 0, 0]}
-            name={`Poids (${data.unitRight})`}
+            name={`Poids (${unitRight})`}
             yAxisId="kg"
-            unit={data.unitRight}
+            unit={unitRight}
           />
           <Bar
             yAxisId="calories"
@@ -79,8 +80,8 @@ export default function DailyActivityChart() {
             fill={red}
             barSize={8}
             radius={[10, 10, 0, 0]}
-            name={`Calories brûlées (${data.unitLeft})`}
-            unit={data.unitLeft}
+            name={`Calories brûlées (${unitLeft})`}
+            unit={unitLeft}
           />
         </BarChart>
       </ResponsiveContainer>
