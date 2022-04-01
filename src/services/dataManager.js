@@ -211,7 +211,7 @@ function formatUserPerformance(performanceData) {
   return userPerformance;
 }
 
-module.exports = {
+export {
   getUserMainData,
   getUserAverageSessions,
   getUserPerformance,

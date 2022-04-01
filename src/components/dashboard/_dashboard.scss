@@ -1,13 +1,14 @@
 @import "../../base/utils";
 
 .dashboardPage {
-  margin: 1rem auto;
+  margin: 2rem auto;
   width: calc(95% - #{$headerWidth});
   max-width: 1300px;
   max-height: calc(100% - #{$headerHeight} - 32px);
-
+  
   @include largeScreen {
     width: calc(88% - #{$headerWidth});
+    padding-left: 1rem;
   }
 
   .contrastText {
@@ -47,13 +48,13 @@
       grid-template-areas:
         "graph1 graph1 graph1"
         "graph2 graph3 graph4";
-      grid-template-rows: 30vh 25vh;
+      grid-template-rows: 3vh 25vh;
       grid-template-columns: 1fr 1fr 1fr;
       
       @include largeScreen {
         row-gap: 2rem;
         column-gap: 2rem;
-        grid-template-rows: 30vh 25vh;
+        grid-template-rows: 32vh 26vh;
       }
     }
 
