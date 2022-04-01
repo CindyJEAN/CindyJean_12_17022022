@@ -10,21 +10,48 @@ import { redLight } from "../chartsTheme";
 
 export default function ScoreChart() {
   const [data] = React.useContext(StoreContext);
+  const background = [{ name: "background", value: 100 }];
 
   return (
     <div className="scoreChartComponent">
+      {/* First RadialBarChart is to have a white background in the inner side of the chart */}
       <ResponsiveContainer width="99%">
         <RadialBarChart
-          innerRadius="80%"
+          innerRadius="30%"
+          outerRadius="100%"
+          data={background}
+          startAngle={220}
+          endAngle={-140}
+          barSize={200}
+        >
+          <PolarAngleAxis
+            dataKey="value"
+            domain={[0, 100]}
+            type="number"
+            tick={false}
+          />
+          <RadialBar
+            name="background"
+            dataKey="value"
+            stroke={"#fff"}
+            fill={"#fff"}
+            cornerRadius={10}
+            isAnimationActive={false}
+          />
+        </RadialBarChart>
+      </ResponsiveContainer>
+      <ResponsiveContainer width="99%">
+        <RadialBarChart
+          innerRadius="65%"
           outerRadius="100%"
           data={data.score}
           startAngle={220}
           endAngle={-140}
-          barSize={8}
+          barSize={10}
         >
           <text
-            x={0}
-            y={10}
+            x={25}
+            y={30}
             textAnchor="left"
             dominantBaseline="central"
             className="chartTitle"

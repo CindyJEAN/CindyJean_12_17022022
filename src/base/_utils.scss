@@ -1,19 +1,19 @@
 $almostBlack: #020203;
-$colorPrimary: #FF0101;
-$colorPrimaryDark: #E60000;
-$grey: #74798C;
-$greyLight: #9B9EAC;
-$backgroundDark: #282D30;
-$backgroundLight: #FBFBFB;
+$colorPrimary: #ff0101;
+$colorPrimaryDark: #e60000;
+$grey: #74798c;
+$greyLight: #9b9eac;
+$backgroundDark: #282d30;
+$backgroundLight: #fbfbfb;
 
 $headerHeight: 90px;
 $headerWidth: 120px;
 
-
 @mixin largeScreen {
-  @media screen and (min-width: 1440px) {@content}
-};
-
+  @media screen and (min-width: 1440px) {
+    @content;
+  }
+}
 
 .dashboardItem {
   border-radius: 10px;

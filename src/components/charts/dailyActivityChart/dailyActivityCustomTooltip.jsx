@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 export default function DailyActivityCustomTooltip(props) {
@@ -19,3 +20,8 @@ export default function DailyActivityCustomTooltip(props) {
   }
   return null;
 }
+
+DailyActivityCustomTooltip.propTypes = {
+  unitLeft: PropTypes.string,
+  unitRight: PropTypes.string,
+};

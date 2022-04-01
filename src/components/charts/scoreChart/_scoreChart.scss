@@ -8,11 +8,24 @@
 
   .chartTitle {
     font-weight: 500;
+    font-size: 0.8rem;
+
+    @include largeScreen {
+      font-size: 1rem;
+      transform: translate(5px, 5px);
+    }
+  }
+
+  .recharts-responsive-container {
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 
   .scoreInfo {
     position: absolute;
     width: 40%;
+    max-width: 130px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

@@ -1,5 +1,5 @@
 const { store } = require("../providers/store");
-const { fetcher } = require("./fetcher");
+const { fetcher, setServerBaseUrl } = require("./fetcher");
 
 /**
  * translated terms
@@ -26,13 +26,15 @@ const getUserId = () => {
 };
 const userId = getUserId();
 
+setServerBaseUrl(`http://localhost:3000/user/${userId}`);
+
 /**
  * get the main user info and store the userInfos, score and nutrition elements' info
  * US #4
  * US #5
  */
 async function getUserMainData() {
-  const fromApi = await fetcher(`http://localhost:3000/user/${userId}`);
+  const fromApi = await fetcher();
 
   fromApi.data.score = formatUserScore(fromApi.data.todayScore);
   delete fromApi.data.todayScore;
@@ -116,9 +118,7 @@ function formatUserScore(score) {
  * US #6
  */
 async function getUserDailyActivity() {
-  const fromApi = await fetcher(
-    `http://localhost:3000/user/${userId}/activity`
-  );
+  const fromApi = await fetcher("/activity");
   store.set({
     dailyActivity: formatDailyActivity(fromApi.data.sessions),
   });
@@ -150,9 +150,7 @@ function formatDailyActivity(data) {
  * US #7
  */
 async function getUserAverageSessions() {
-  const fromApi = await fetcher(
-    `http://localhost:3000/user/${userId}/average-sessions`
-  );
+  const fromApi = await fetcher("/average-sessions");
   store.set({
     averageSessions: formatAverageSessions(fromApi.data.sessions),
   });
@@ -189,9 +187,7 @@ function formatAverageSessions(sessions) {
  * US #9
  */
 async function getUserPerformance() {
-  const fromApi = await fetcher(
-    `http://localhost:3000/user/${userId}/performance`
-  );
+  const fromApi = await fetcher("/performance");
   store.set({
     performance: formatUserPerformance(fromApi.data),
   });
