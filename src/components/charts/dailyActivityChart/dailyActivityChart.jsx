@@ -40,7 +40,7 @@ export default function DailyActivityChart() {
           <YAxis
             yAxisId="kg"
             dataKey="kilogram"
-            domain={["dataMin-5", "dataMax"]}
+            domain={["dataMin-2", "dataMax+2"]}
             orientation="right"
             axisLine={false}
             tickLine={false}
@@ -59,8 +59,9 @@ export default function DailyActivityChart() {
           <Legend
             align="right"
             verticalAlign="top"
-            height={60}
+            height={70}
             iconType="circle"
+            iconSize={9}
             formatter={(value) => (
               <span className="barChartLegend">{value}</span>
             )}

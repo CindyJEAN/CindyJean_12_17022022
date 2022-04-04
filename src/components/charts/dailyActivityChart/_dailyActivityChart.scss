@@ -19,9 +19,16 @@
   .recharts-default-legend {
     display: flex;
     justify-content: flex-end;
+    column-gap: 1rem;
 
     @include largeScreen {
       column-gap: 2rem;
+    }
+  }
+
+  .recharts-legend-item {
+    .recharts-surface {
+      margin-right: 15px !important;
     }
   }
 
