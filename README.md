@@ -16,7 +16,7 @@ This repo contains the code to run the front for the sports analytics dashboard 
 - Clone it on your computer
 - Run `npm i` or `npm install` to install dependencies
 
-## 3. Launching
+## 3. Launch
 In the project directory, you can run the app in development mode with :
 
 ```shell
