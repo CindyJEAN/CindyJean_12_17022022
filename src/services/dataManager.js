@@ -35,7 +35,9 @@ setServerBaseUrl(`http://localhost:3000/user/${userId}`);
  */
 async function getUserMainData() {
   const fromApi = await fetcher();
-
+  if (fromApi === "can not get user") {
+    window.location.href = "http://localhost:3005/404";
+  }
   fromApi.data.score = formatUserScore(fromApi.data.todayScore);
   delete fromApi.data.todayScore;
 

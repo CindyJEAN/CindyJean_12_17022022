@@ -1,7 +1,8 @@
 @import "./base/base";
+//pages
+@import "./pages/dashboard/dashboard";
 //components
 @import "./components/navigation/navbar";
-@import "./components/dashboard/dashboard";
 @import "./components/charts/dailyActivityChart/dailyActivityChart";
 @import "./components/charts/averageSessionsChart/averageSessionsChart";
 @import "./components/charts/activityKindChart/activityKindChart";

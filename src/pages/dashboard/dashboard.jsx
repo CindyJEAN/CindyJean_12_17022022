@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import ActivityKindChart from "../charts/activityKindChart/activityKindChart";
-import AverageSessionsChart from "../charts/averageSessionsChart/averageSessionsChart";
-import DailyActivityChart from "../charts/dailyActivityChart/dailyActivityChart";
-import ScoreChart from "../charts/scoreChart/scoreChart";
+import ActivityKindChart from "../../components/charts/activityKindChart/activityKindChart";
+import AverageSessionsChart from "../../components/charts/averageSessionsChart/averageSessionsChart";
+import DailyActivityChart from "../../components/charts/dailyActivityChart/dailyActivityChart";
+import ScoreChart from "../../components/charts/scoreChart/scoreChart";
 import { StoreContext } from "../../providers/store";
-import { getUserMainData } from "./../../services/dataManager";
+import { getUserMainData } from "../../services/dataManager";
 
 export default function Dashboard() {
   const [data] = React.useContext(StoreContext);
