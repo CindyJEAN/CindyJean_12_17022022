@@ -22,7 +22,8 @@ In the project directory, you can run the app in development mode with :
 ```shell
 npm start
 ```
-Open [http://localhost:3005](http://localhost:3005) to view it in your browser.
+
+Open [http://localhost:3005/user/12](http://localhost:3005/user/12) to view it in your browser.
 
 
 
